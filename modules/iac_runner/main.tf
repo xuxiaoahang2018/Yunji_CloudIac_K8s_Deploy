@@ -1,4 +1,7 @@
 variable "image" {}
+variable "replicas" {
+    default = 1
+}
 
 resource "kubernetes_service" "ct_runner" {
   metadata {
@@ -44,7 +47,7 @@ resource "kubernetes_deployment" "ct_runner" {
   }
 
   spec {
-    replicas = 1
+    replicas = var.replicas
 
     selector {
       match_labels = {

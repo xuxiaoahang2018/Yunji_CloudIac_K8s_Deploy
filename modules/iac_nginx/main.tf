@@ -1,4 +1,7 @@
 variable "image" {}
+variable "replicas" {
+    default = 1
+}
 resource "kubernetes_deployment" "nginx" {
   metadata {
     name = "nginx"
@@ -15,7 +18,7 @@ resource "kubernetes_deployment" "nginx" {
   }
 
   spec {
-    replicas = 1
+    replicas = var.replicas
 
     selector {
       match_labels = {

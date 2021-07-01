@@ -1,0 +1,32 @@
+version: 0.1
+templates:
+  - name: terraform-yunji-cloud-iac
+    terraform:
+      workdir: ./
+      save_state: true
+      var:
+        iac_consul_image: 'registry.cn-beijing.aliyuncs.com/cloudiac-test-01/consul:latest'
+        iac_mysql_image: 'registry.cn-beijing.aliyuncs.com/cloudiac-test-01/mysql:5.7'
+        iac_nginx_image: 'registry.cn-beijing.aliyuncs.com/cloudiac-test-01/cloudiac-web:latest'
+        iac_cloudiac_image: 'registry.cn-beijing.aliyuncs.com/cloudiac-test-01/cloudiac:latest'
+        node_ecs_cpu: 4
+        node_ecs_memory_size: 8
+        vpc_cidr: '10.1.0.0/21'
+        slb_spec: 'slb.s2.small'
+        k8s_worker_number: 3
+        k8s_new_nat_gateway: true
+        k8s_ssh_password: 'Yunjikeji#123'
+        k8s_pod_cidr: '172.21.0.0/20'
+        k8s_service_cidr: '172.21.0.0/20'
+        k8s_worker_disk_size: 40
+        iac_nginx_replicas: 1
+        iac_consul_replicas: 1
+        iac_mysql_replicas: 1
+        iac_portal_replicas: 1
+        iac_runner_replicas: 1
+
+    env:
+      ALICLOUD_REGION: cn-beijing
+    description: 在阿里云k8s服务上一键部署IAC整体服务
+    timeout: 1500
+

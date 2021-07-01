@@ -1,4 +1,7 @@
 variable "image" {}
+variable "replicas" {
+    default = 1
+}
 
 resource "kubernetes_service" "iac_portal" {
   metadata {
@@ -45,7 +48,7 @@ resource "kubernetes_deployment" "iac_portal" {
   }
 
   spec {
-    replicas = 1
+    replicas = var.replicas
 
     selector {
       match_labels = {

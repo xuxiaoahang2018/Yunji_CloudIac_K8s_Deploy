@@ -1,4 +1,7 @@
 variable "image" {}
+variable "replicas" {
+    default = 1
+}
 
 resource "kubernetes_deployment" "iac_consul" {
   metadata {
@@ -16,7 +19,7 @@ resource "kubernetes_deployment" "iac_consul" {
   }
 
   spec {
-    replicas = 1
+    replicas = var.replicas
 
     selector {
       match_labels = {
