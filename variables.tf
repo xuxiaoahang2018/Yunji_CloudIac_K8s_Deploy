@@ -49,7 +49,7 @@ variable "k8s_new_nat_gateway" {
 }
 
 variable "k8s_ssh_password" {
-  default = "Yunjikeji#123"
+  default = ""
   description = "ssh登录集群节点的密码"
 }
 
